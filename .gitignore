@@ -1,0 +1,86 @@
+# Makester
+.makester
+
+*.py[cod]
+*.swp
+*.swo
+
+# C extensions
+*.so
+!pyodbc.so
+
+# Packages
+*.egg
+*.egg-info
+dist
+eggs
+parts
+var
+sdist
+develop-eggs
+.installed.cfg
+lib
+lib64
+.wheelhouse
+
+# Installer logs
+pip-log.txt
+
+# Unit test / coverage reports
+.coverage
+.tox
+nosetests.xml
+coverage.xml
+
+# Translations
+*.mo
+
+# Mr Developer
+.mr.developer.cfg
+.project
+.pydevproject
+
+# setup.py
+build
+
+# Local virtual environment
+[v23]env
+
+# py.test
+.cache
+.pytest_cache
+
+# Vagrant
+.vagrant
+*console.log
+
+# SonarQube
+.scannerwork
+
+# PyCharm
+.idea
+
+# Junit
+junit.xml
+
+# Docker test env file
+test.env
+
+# Spark
+derby.log
+metastore_db
+
+# CNP
+.data-kafka-connect/*.processed
+
+# Kafka Connect dynamically created connector configs
+*s3.properties.json
+
+# Visual Studio Code
+.vscode
+
+# macOS
+.DS_Store
+
+# Ctags
+tags
