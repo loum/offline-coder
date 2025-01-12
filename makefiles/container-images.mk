@@ -65,12 +65,11 @@ _image-rm:
 image-rm: _image-rm
 
 container-images-help:
-	@echo "(makefiles/container-images.mk)\n\
-  image-cache-add      Inject \"$(MAKESTER__IMAGE_TAG_ALIAS)\" into the MicroK8s image cache\n\
-  image-cache-del      Delete \"$(MAKESTER__IMAGE_TAG_ALIAS)\" from the MicroK8s image cache\n\
-  local-image-buildx   Container image build for local platform\n\
-  multi-arch-buildx    Multi-platform container image build for \"$(MAKESTER__IMAGE_TAG_ALIAS)\"\n\
-  multi-arch-buildx-test\n\
-                       Shake-out multi-platform container image build locally\n"
+	printf "\n(makefiles/container-images.mk)\n"
+	$(call help-line,image-cache-add,Inject \"$(MAKESTER__IMAGE_TAG_ALIAS)\" into the MicroK8s image cache)
+	$(call help-line,image-cache-del,Delete \"$(MAKESTER__IMAGE_TAG_ALIAS)\" from the MicroK8s image cache)
+	$(call help-line,local-image-buildx,Container image build for local platform)
+	$(call help-line,multi-arch-buildx,Multi-platform container image build for \"$(MAKESTER__IMAGE_TAG_ALIAS)\")
+	$(call help-line,multi-arch-buildx-test,Shake-out multi-platform container image build locally)
 
 .PHONY: container-images-help
