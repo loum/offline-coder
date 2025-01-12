@@ -11,20 +11,25 @@ USER root
 #  /opt/terraform/plugins in the container.
 #  https://developer.hashicorp.com/terraform/cli/config/config-file#filesystem_mirror
 #  Be sure to add all the providers you use in your templates to /opt/terraform/plugins
+#
+ARG ARCH=arm64
+ARG UNAME=darwin
 
-WORKDIR /home/coder/.terraform.d/plugins/registry.terraform.io
-
-ARG CODER_PROVIDER_VERSION=2.0.2
-WORKDIR coder/coder
-COPY docker/resources/terraform-provider-coder_${CODER_PROVIDER_VERSION}_linux_amd64.zip .
+ARG CODER_PROVIDER_VERSION=2.1.0
+WORKDIR /home/coder/.terraform.d/plugins/registry.terraform.io/coder/coder
+COPY docker/resources/terraform-provider-coder_${CODER_PROVIDER_VERSION}_${UNAME}_${ARCH}.zip .
 
 ARG DOCKER_PROVIDER_VERSION=3.0.2
-WORKDIR kreuzwerker/docker
-COPY docker/resources/terraform-provider-docker_${DOCKER_PROVIDER_VERSION}_linux_amd64.zip .
+WORKDIR /home/coder/.terraform.d/plugins/registry.terraform.io/kreuzwerker/docker
+COPY docker/resources/terraform-provider-docker_${DOCKER_PROVIDER_VERSION}_${UNAME}_${ARCH}.zip .
 
-ARG KUBERNETES_PROVIDER_VERSION=2.35.0
-WORKDIR hashicorp/kubernetes 
-COPY docker/resources/terraform-provider-kubernetes_${KUBERNETES_PROVIDER_VERSION}_linux_amd64.zip .
+ARG KUBERNETES_PROVIDER_VERSION=2.35.1
+WORKDIR /home/coder/.terraform.d/plugins/registry.terraform.io/hashicorp/kubernetes
+COPY docker/resources/terraform-provider-kubernetes_${KUBERNETES_PROVIDER_VERSION}_${UNAME}_${ARCH}.zip .
+
+#ARG CODER_ENVBUILDER_PROVIDER_VERSION=1.0.0
+#WORKDIR /home/coder/.terraform.d/plugins/registry.terraform.io/hashicorp/kubernetes
+#COPY docker/resources/terraform-provider-envbuilder_${CODER_ENVBUILDER_PROVIDER_VERSION}_${UNAME}_${ARCH}.zip .
 
 WORKDIR /home/coder/
 COPY docker/resources/filesystem-mirror-example.tfrc .terraformrc
